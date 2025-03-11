@@ -1,26 +1,20 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# 🎳 Bowling Score Tracker API
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 📌 About
+This is a **Bowling Score Tracker API** built with **NestJS** and **MongoDB**. It allows multiple players to play a game, track frames, calculate scores, and get game result.
 
+---
+
+## 🚀 Features
+✅ Create and manage bowling games  
+✅ Track player scores across frames  
+✅ Support for strikes (`X`) and spares (`/`)  
+✅ Leaderboard and game results  
+✅ Runs with **Docker & MongoDB**  
+✅ Supports **server & serverless deployments**
+
+---
 ## Description
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
@@ -57,18 +51,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+## Deployment Strategy
+This project supports two deployment options:
+1️⃣ Traditional Server Deployment (EC2 or any on-premise server)
+2️⃣ Serverless Deployment on AWS Lambda
 
 ## API Endpoints
 ### 1. Create a New Game
@@ -80,6 +66,51 @@ curl -X POST http://localhost:3000/games \
 "players": ["Hulk", "Wolverine", "Deadpool"]
 }'
 ```
+**Response**
+```aiignore
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 492
+ETag: W/"1ec-ik9SeanV4IsR17ibMP++KWhha1E"
+Date: Tue, 11 Mar 2025 22:13:47 GMT
+Connection: close
+
+{
+  "name": "Bowling Championship",
+  "players": [
+    {
+      "playerName": "Hulk",
+      "totalScore": 0,
+      "onFrame": 0,
+      "_id": "67d0b59b08daa92d491f997d",
+      "frames": []
+    },
+    {
+      "playerName": "Wolverine",
+      "totalScore": 0,
+      "onFrame": 0,
+      "_id": "67d0b59b08daa92d491f997e",
+      "frames": []
+    },
+    {
+      "playerName": "Deadpool",
+      "totalScore": 0,
+      "onFrame": 0,
+      "_id": "67d0b59b08daa92d491f997f",
+      "frames": []
+    }
+  ],
+  "countOfCompleted": 0,
+  "completed": false,
+  "_id": "67d0b59b08daa92d491f997c",
+  "createdAt": "2025-03-11T22:13:47.762Z",
+  "updatedAt": "2025-03-11T22:13:47.762Z",
+  "__v": 0
+}
+
+```
+
 ### 2. Create a Game with Duplicate Players
 ```aiignore
 curl -X POST http://localhost:3000/games \
@@ -89,7 +120,50 @@ curl -X POST http://localhost:3000/games \
 }'
 
 ```
+**Response**
+```aiignore
+HTTP/1.1 201 Created
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 488
+ETag: W/"1e8-hAbWDAkyubda0P8GBDCzNlkXttU"
+Date: Tue, 11 Mar 2025 22:14:44 GMT
+Connection: close
 
+{
+  "name": "Legendary Bowl #2811",
+  "players": [
+    {
+      "playerName": "Hulk",
+      "totalScore": 0,
+      "onFrame": 0,
+      "_id": "67d0b5d408daa92d491f9982",
+      "frames": []
+    },
+    {
+      "playerName": "Hulk",
+      "totalScore": 0,
+      "onFrame": 0,
+      "_id": "67d0b5d408daa92d491f9983",
+      "frames": []
+    },
+    {
+      "playerName": "Wolverine",
+      "totalScore": 0,
+      "onFrame": 0,
+      "_id": "67d0b5d408daa92d491f9984",
+      "frames": []
+    }
+  ],
+  "countOfCompleted": 0,
+  "completed": false,
+  "_id": "67d0b5d408daa92d491f9981",
+  "createdAt": "2025-03-11T22:14:44.056Z",
+  "updatedAt": "2025-03-11T22:14:44.056Z",
+  "__v": 0
+}
+
+```
 ### 3. Add a Frame for a Player
 ```aiignore
 curl -X PATCH http://localhost:3000/games/{gameId}/players/{playerId}/frames \
@@ -98,9 +172,98 @@ curl -X PATCH http://localhost:3000/games/{gameId}/players/{playerId}/frames \
 "rolls": ["3","/"]
 }'
 ```
+**Response**
+```aiignore
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 612
+ETag: W/"264-reQUSInBtHjHEWp94UanBhtXcR4"
+Date: Tue, 11 Mar 2025 22:15:23 GMT
+Connection: close
+
+{
+  "_id": "67d0b5d408daa92d491f9981",
+  "name": "Legendary Bowl #2811",
+  "players": [
+    {
+      "playerName": "Hulk",
+      "totalScore": 0,
+      "onFrame": 0,
+      "_id": "67d0b5d408daa92d491f9982",
+      "frames": []
+    },
+    {
+      "playerName": "Hulk",
+      "totalScore": 0,
+      "onFrame": 0,
+      "_id": "67d0b5d408daa92d491f9983",
+      "frames": []
+    },
+    {
+      "playerName": "Wolverine",
+      "totalScore": 10,
+      "onFrame": 1,
+      "_id": "67d0b5d408daa92d491f9984",
+      "frames": [
+        {
+          "frameId": 1,
+          "rolls": [
+            "3",
+            "/"
+          ],
+          "cumulativeScore": 10,
+          "dateTime": "2025-03-11T22:15:23.534Z",
+          "_id": "67d0b5fb08daa92d491f998a"
+        }
+      ]
+    }
+  ],
+  "countOfCompleted": 0,
+  "completed": false,
+  "createdAt": "2025-03-11T22:14:44.056Z",
+  "updatedAt": "2025-03-11T22:15:23.536Z",
+  "__v": 1
+}
+
+```
+
 ### 4. Get Game Result
 ```
 curl -X GET http://localhost:3000/games/{gameId}/result
+
+```
+
+**Response**
+```aiignore
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 184
+ETag: W/"b8-7YcKgB/fjdc/sYa5gBWUOxTJwGA"
+Date: Tue, 11 Mar 2025 22:15:47 GMT
+Connection: close
+
+{
+  "name": "Fierce Arena #3540",
+  "players": [
+    {
+      "rank": 1,
+      "playerName": "Hulk",
+      "totalScore": 0
+    },
+    {
+      "rank": 1,
+      "playerName": "Hulk",
+      "totalScore": 0
+    },
+    {
+      "rank": 1,
+      "playerName": "Wolverine",
+      "totalScore": 0
+    }
+  ]
+}
 
 ```
 ### 5. Get All Games
@@ -108,29 +271,47 @@ curl -X GET http://localhost:3000/games/{gameId}/result
 curl -X GET http://localhost:3000/games
 
 ```
+**Response**
+```aiignore
+HTTP/1.1 200 OK
+X-Powered-By: Express
+Content-Type: application/json; charset=utf-8
+Content-Length: 187
+ETag: W/"bb-TPUG6TG7JfMzW8SBW1LjFofwBuQ"
+Date: Tue, 11 Mar 2025 22:16:14 GMT
+Connection: close
 
+{
+  "name": "Legendary Bowl #2811",
+  "players": [
+    {
+      "rank": 1,
+      "playerName": "Wolverine",
+      "totalScore": 10
+    },
+    {
+      "rank": 2,
+      "playerName": "Hulk",
+      "totalScore": 0
+    },
+    {
+      "rank": 2,
+      "playerName": "Hulk",
+      "totalScore": 0
+    }
+  ]
+}
+
+```
 ## Resources
 
 Check out a few resources that may come in handy when working with NestJS:
 
 - Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
 
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
 
 ## License
 
