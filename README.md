@@ -27,6 +27,10 @@ $ npm install
 
 ## Compile and run the project
 
+## Docker
+```bash
+docker-compose up --build
+```
 ```bash
 # development
 $ npm run start
@@ -50,6 +54,7 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
 
 ## Deployment Strategy
 This project supports two deployment options:
